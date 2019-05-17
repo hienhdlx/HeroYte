@@ -1,0 +1,129 @@
+﻿@model ShiftModel
+@{
+    //Page Title
+    ViewBag.Title = T("Hero.Admin.Shifts.AddNew").Text;
+    //active menu item (System name)
+    Html.SetActiveMenuItemSystemName("Shifts");
+}
+
+<form asp-controller="Shift" asp-action="Create" method="post" id="shift-form">
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            @T("Hero.Admin.Shifts.AddNew")
+            <small>
+                <i class="fa fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("Hero.Admin.Shifts.BackToList")</a>
+            </small>
+        </h1>
+        <div class="pull-right">
+            <button type="submit" name="save" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                @T("Admin.Common.Save")
+            </button>
+            <button type="submit" name="save-continue" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                @T("Admin.Common.SaveContinue")
+            </button>
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.ShiftDetailsButtons })
+        </div>
+    </div>
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Id" type="hidden"/>
+
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Code" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Code" />
+                                <span asp-validation-for="Code"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Name" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Name" />
+                                <span asp-validation-for="Name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Description" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Description" />
+                                <span asp-validation-for="Description"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="FromHour" />
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.FromHour, new { @id = "FromHour", @class = "form-control timepick", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.FromHour)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="ToHour" />
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.ToHour, new { @id = "ToHour", @class = "form-control timepick", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.ToHour)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="BreakTimeFrom" />
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.BreakTimeFrom, new { @id = "BreakTimeFrom", @class = "form-control timepick", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.BreakTimeFrom)
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="BreakTimeTo" />
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.BreakTimeTo, new { @id = "BreakTimeTo", @class = "form-control timepick", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.BreakTimeTo)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Active" />
+                            </div>
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(m => m.Active, new { @id = "Active" })
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.ShiftDetailsButtons, additionalData = Model })
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $(".timepick").datetimepicker({
+	        format: "HH:mm",
+	        locale: 'vi'
+        });
+
+        
+        
+    });
+</script>

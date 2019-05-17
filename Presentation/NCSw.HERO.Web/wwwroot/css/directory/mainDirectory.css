@@ -1,0 +1,65 @@
+﻿
+.content-header {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.content {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.header-mainDirectory h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.panel.panel-default.panel-search {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+     -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.panel.panel-default {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.panel.panel-default.panel-search .searchBtn button {
+    float: right;
+    border-color: #4e9c70;
+    background: #4e9c70;
+}
+
+.panel.panel-default.panel-search .searchBtn button:hover {
+    background: #fff;
+    color: #4e9c70;
+}
+
+.panel.panel-default.panel-search .search-item {
+    border-bottom: 1px solid #c1c1c1;
+    float: left;
+    width: 100%;
+}
+
+.panel.panel-default.panel-search .search-item label {
+    float: left;
+    padding-top: 0;
+}
+
+.panel.panel-default.panel-search .form-input-item {
+    width: calc(100% - 85px);
+    float: left;
+}
+
+.panel.panel-default.panel-search .form-input-item input{
+    border: none;
+}
+
+.k-grid-header .k-header {
+    background: #4e9c70;
+    color: #fff;
+}
+
+.k-pager-numbers .k-state-selected {
+    background: #4e9c70;
+}

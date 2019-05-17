@@ -1,0 +1,265 @@
+﻿@using NCSw.HERO.Web.Areas.Admin.Models
+@model DoctorSearchModel
+
+@{
+    Html.AppendCssFileParts("~/lib/ionicons/css/ionicons-2.0.1.min.css");
+
+    ViewBag.Title = T("Hero.Admin.Doctors").Text;
+    Html.SetActiveMenuItemSystemName("Doctors");
+    Html.AppendCssFileParts("~/css/admin/main.css");
+    Html.AppendCssFileParts("~/css/directory/mainDirectory.css");
+}
+
+<form asp-controller="Doctor" asp-action="List" method="post">
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            @T("Hero.Admin.Doctors")
+        </h1>
+        <div class="pull-right">
+            <a asp-action="Create" class="btn bg-blue">
+                <i class="fa fa-plus-square"></i>
+                @T("Admin.Common.AddNew")
+            </a>
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DoctorListButtons })
+            <button type="button" id="delete-selected" class="btn bg-red">
+                <i class="fa fa-trash-o"></i>
+                @T("Admin.Common.Delete.Selected")
+            </button>
+            <nop-action-confirmation asp-button-id="delete-selected" />
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="panel-group">
+                <div class="panel panel-default panel-search">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 right-padding-0">
+                                <div class="form-group">
+                                    <div class="col-md-3">
+                                        <div class=" search-item">
+                                            <label class="control-label" for="SearchName"><i class="fa fa-search"></i> </label>
+                                            <div class="form-input-item">
+                                                <nop-editor asp-for="SearchName"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-3 searchBtn">
+                                        <button type="button" id="search-doctor" class="btn btn-primary btn-search-directory">
+                                            <i class="fa fa-search"></i>
+                                            @T("Admin.Common.Search")
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="doctors-grid"></div>
+                        <script>
+                            $(document).ready(function() {
+                                $("#doctors-grid").kendoGrid({
+                                    dataSource: {
+                                        type: "json",
+                                        transport: {
+                                            read: {
+                                                url: "@Html.Raw(Url.Action("List", "Doctor"))",
+                                                type: "POST",
+                                                dataType: "json",
+                                                data: function () {
+                                                    var data = {
+                                                        SearchName: $('#@Html.IdFor(model => model.SearchName)').val()
+                                                    };
+                                                    addAntiForgeryToken(data);
+                                                    return data;
+                                                }
+                                            }
+                                        },
+                                        schema: {
+                                            data: "Data",
+                                            total: "Total",
+                                            errors: "Errors"
+                                        },
+                                        error: function(e) {
+                                            display_kendoui_grid_error(e);
+                                            // Cancel the changes
+                                            this.cancelChanges();
+                                        },
+                                        pageSize: @(Model.PageSize),
+                                        serverPaging: true,
+                                        serverFiltering: true,
+                                        serverSorting: true
+                                    },
+                                    pageable: {
+                                        refresh: true,
+                                        pageSizes: [@(Model.AvailablePageSizes)],
+                                        @await Html.PartialAsync("_GridPagerMessages")
+                                    },
+                                    scrollable: false,
+                                    dataBound: onDataBound,
+                                    columns: [
+                                        {
+                                            field: "Id",
+                                            headerTemplate: "<label class='checkboxStyleList'><input id='mastercheckbox' type='checkbox'/><span class='checkmarkCheckboxList'></span></label>",
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" },
+                                            template: "<label class='checkboxStyleList'><input type='checkbox' value='#=Id#' class='checkboxGroups'/><span class='checkmarkCheckboxList'></span></label>",
+                                            width: 50
+                                        },
+                                        {
+                                            field: "Code",
+                                            title: "@T("Hero.Admin.Doctors.Fields.Code")",
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" }
+                                        },
+                                        {
+                                            field: "FullName",
+                                            title: "@T("Hero.Admin.Doctors.Fields.FullName")",
+                                            headerAttributes: { style: "text-align:center" }
+                                        },
+                                        {
+                                            field: "BirthDay",
+                                            title: "@T("Hero.Admin.Doctors.Fields.BirthDay")",
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" },
+                                            template: "#= kendo.toString(kendo.parseDate(BirthDay, 'yyyy-MM-dd'), '" + app.dateTime.dateFormat() + "') #"
+                                        },
+                                        {
+                                            field: "Gender",
+                                            title: "@T("Hero.Admin.Doctors.Fields.Gender")",
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" },
+                                            template: '# if(Gender == 1) {# Nam #} else if (Gender == 0) {# Nữ #} else {# Khác #} #'
+                                        },
+                                        {
+                                            field: "IdentityCard",
+                                            title: "@T("Hero.Admin.Doctors.Fields.IdentityCard")",
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" }
+                                        },
+                                        {
+                                            field: "Email",
+                                            title: "@T("Hero.Admin.Doctors.Fields.Email")",
+                                            headerAttributes: { style: "text-align:center" }
+                                        },
+                                        {
+                                            field: "PhoneNumber",
+                                            title: "@T("Hero.Admin.Doctors.Fields.PhoneNumber")",
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" }
+                                        },
+                                        {
+                                            field: "Id",
+                                            title: "@T("Admin.Common.Edit")",
+                                            width: 100,
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" },
+                                            template: '<a class="btn" href="Edit/#=Id#" title="@T("Admin.Common.Edit")" data-toggle="tooltip" data-placement="top"><i class="fa fa-edit" style="padding: 0px !important;font-size: 18px;"></i></a>'
+                                        }
+                                    ]
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var selectedIds = [];
+
+        $(document).ready(function () {
+            //search button
+            $('#search-doctor').click(function () {
+                //search
+                var grid = $('#doctors-grid').data('kendoGrid');
+                grid.dataSource.page(1); //new search. Set page size to 1
+                //grid.dataSource.read(); we already loaded the grid above using "page" function
+                //clear selected checkboxes
+                $('.checkboxGroups').attr('checked', false).change();
+                selectedIds = [];
+                return false;
+            });
+
+            $("#@Html.IdFor(model => model.SearchName)").keydown(function (event) {
+                if (event.keyCode === 13) {
+                    $("#search-doctor").click();
+                    return false;
+                }
+            });
+
+            //delete selected
+            $("#delete-selected-action-confirmation-submit-button").bind("click", function () {
+                var postData = {
+                    selectedIds: selectedIds
+                };
+                addAntiForgeryToken(postData);
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: "@(Url.Action("DeleteSelected", "Doctor"))",
+                    data: postData,
+                    complete: function (data) {
+                        //reload grid
+                        var grid = $('#doctors-grid').data('kendoGrid');
+                        grid.dataSource.read();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(thrownError);
+                    }
+                });
+                $('#delete-selected-action-confirmation').modal('toggle');
+                return false;
+            });
+
+            $('#mastercheckbox').click(function () {
+                $('.checkboxGroups').attr('checked', $(this).is(':checked')).change();
+            });
+
+            //wire up checkboxes.
+            $('#doctors-grid').on('change', 'input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]', function (e) {
+                var $check = $(this);
+                var checked = jQuery.inArray($check.val(), selectedIds);
+                if ($check.is(":checked") == true) {
+                    if (checked == -1) {
+                        //add id to selectedIds.
+                        selectedIds.push($check.val());
+                    }
+                } else if (checked > -1) {
+                    //remove id from selectedIds.
+                    selectedIds = $.grep(selectedIds, function (item, index) {
+                        return item != $check.val();
+                    });
+                }
+                updateMasterCheckbox();
+            });
+            $("#SearchName").attr("placeholder", "@T("Admin.Common.SearchAllItem.Placeholder")");
+        });
+
+        function onDataBound(e) {
+            $('#doctors-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').each(function () {
+                var currentId = $(this).val();
+                var checked = jQuery.inArray(currentId, selectedIds);
+                //set checked based on if current checkbox's value is in selectedIds.
+                $(this).attr('checked', checked > -1);
+            });
+
+            updateMasterCheckbox();
+        }
+
+        function updateMasterCheckbox() {
+            var numChkBoxes = $('#doctors-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').length;
+            var numChkBoxesChecked = $('#doctors-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]:checked').length;
+            $('#mastercheckbox').attr('checked', numChkBoxes == numChkBoxesChecked && numChkBoxes > 0);
+        }
+    </script>
+</form>

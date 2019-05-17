@@ -1,0 +1,225 @@
+
+
+.requestQuestion {
+  width: 100%;
+  float: left;
+  padding: 7px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 6px 1px #dedbdb;
+}
+
+.requestQuestion h5 {
+  font-weight: 600;
+  float: left;
+  margin: 10px 0 6px 0;
+}
+
+.requestQuestion div{
+	margin-left: 15px;
+}
+
+.requestChannel {
+	float: right;
+}
+
+.requestChannel select, .requestRoom select, .requestFollow select, .requestMonth select{
+  height: 32px;
+}
+
+.requestRoom {
+	float: right;
+}
+
+.requestFollow {
+	float: right;
+}
+
+.requestMonth {
+	float: right;
+}
+
+.overViewTotal {
+  width: 100%;
+  float: left;
+  margin-top: 17px;
+}
+
+.overViewItem {
+  padding: 7px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 6px 1px #dedbdb;
+  width: 100%;
+  float: left;
+  height: 120px;
+}
+
+.overViewItem div.col-md-8 h5{
+  /*font-family: MontserratMedium;*/
+}
+
+.overViewItem div.col-md-8 p{
+  /*font-family: MontserratSemibold;*/
+}
+
+.overViewTotal .overViewItem div.col-md-4 {
+  padding: 15px;
+  padding-right: 16px;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  margin-top: 12px;
+  margin-left: 13px;
+}
+
+.overViewTotal .overViewItem div.col-md-8 {
+  width: calc(100% - 70px);
+}
+
+.overViewTotal .overViewItem div.col-md-8 h5 {
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 15px;
+}
+
+.overViewTotal .overViewItem div.col-md-8 p {
+  font-weight: bold;
+  font-size: 30px;
+  padding-left: 15px;
+}
+
+.iconCalendar {
+  background-color: #4fc6e1;
+}
+
+.iconWaitRequest {
+  background-color: #e9a751;
+}
+
+.overViewTotal .overViewItem div.col-md-4.iconRequestAccept {
+  background-color: #1abc9c;
+  padding: 12px;
+}
+
+.overViewTotal .overViewItem div.col-md-4.iconFinish {
+  background-color: #7a5ec2;  
+  padding: 16px;
+}
+
+.editDashBoard {
+  float: left;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.editDashBoard a {
+  float: right;
+  color: #4e9c70;
+  text-decoration: underline;
+}
+
+.dashBoardOverView {
+  width: 100%;
+  float: left;
+  margin-top: 17px;
+}
+
+.dashboardItem {
+  padding: 7px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 6px 1px #dedbdb;
+  width: 100%;
+  float: left;
+}
+
+.dashboardItem h5 {
+  font-weight: bold;
+  padding-left: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.voteDashBoard {
+  float: left;
+  width: 100%;
+}
+
+.voteDashBoard .col-md-4 {
+  text-align: center;
+}
+
+.voteDashBoard .col-md-4 h1 {
+  font-weight: bold;
+}
+
+.voteDashBoard .col-md-4 h1 span {
+  font-size: 16px;
+  font-weight: 100;
+}
+
+.voteStarIcon {
+  float: left;
+  width: 100%;
+}
+
+.voteDashBoard p {
+  margin-top: 18px;
+  width: 100%;
+  float: left;
+  color: #8c8c8c;
+}
+
+.voteViewAll {
+  width: 100%;
+  float: left;
+  margin-top: 40px;
+}
+
+.voteViewAll a {
+  color: #4e9c70;
+  text-decoration: underline;
+}
+
+.voteDashBoard .col-md-8 ul {
+  list-style: none;
+  padding-left: 0;
+  width: 100%;
+  float: left;
+}
+
+.voteDashBoard .col-md-8 ul li {
+  margin-bottom: 15px;
+  width: 100%;
+  float: left;
+}
+
+.voteDashBoard .col-md-8 ul li:first-child {
+  margin-top: 18px;
+}
+
+.voteStarIconSmall {
+  float: left;
+  width: 100px;
+}
+
+.voteStarLineEmpty {
+  padding: 8px;
+  float: left;
+  margin: 4px;
+  width: calc(100% - 150px);
+  background-color: #f2f2f2;
+}
+
+.voteDashBoard .voteNumberStar {
+  float: left;  
+  width: auto;
+  margin: 2px 2px 2px 8px;
+}
+
+.voteViewAllFollowChart {
+  margin-top: 20px;
+}
+
+.voteViewAllFollowChart a{
+  float: right;
+}

@@ -1,0 +1,12 @@
+E:\HERO\Libraries\NCSw.HERO.Data\bin\Debug\netcoreapp2.2\NCSw.HERO.Data.deps.json
+E:\HERO\Libraries\NCSw.HERO.Data\bin\Debug\netcoreapp2.2\NCSw.HERO.Data.dll
+E:\HERO\Libraries\NCSw.HERO.Data\bin\Debug\netcoreapp2.2\NCSw.HERO.Data.pdb
+E:\HERO\Libraries\NCSw.HERO.Data\bin\Debug\netcoreapp2.2\NCSw.HERO.Core.dll
+E:\HERO\Libraries\NCSw.HERO.Data\bin\Debug\netcoreapp2.2\NCSw.HERO.Core.pdb
+E:\HERO\Libraries\NCSw.HERO.Data\obj\Debug\netcoreapp2.2\NCSw.HERO.Data.csprojAssemblyReference.cache
+E:\HERO\Libraries\NCSw.HERO.Data\obj\Debug\netcoreapp2.2\NCSw.HERO.Data.csproj.CoreCompileInputs.cache
+E:\HERO\Libraries\NCSw.HERO.Data\obj\Debug\netcoreapp2.2\NCSw.HERO.Data.AssemblyInfoInputs.cache
+E:\HERO\Libraries\NCSw.HERO.Data\obj\Debug\netcoreapp2.2\NCSw.HERO.Data.AssemblyInfo.cs
+E:\HERO\Libraries\NCSw.HERO.Data\obj\Debug\netcoreapp2.2\NCSw.HERO.Data.csproj.CopyComplete
+E:\HERO\Libraries\NCSw.HERO.Data\obj\Debug\netcoreapp2.2\NCSw.HERO.Data.dll
+E:\HERO\Libraries\NCSw.HERO.Data\obj\Debug\netcoreapp2.2\NCSw.HERO.Data.pdb

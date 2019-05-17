@@ -1,0 +1,248 @@
+﻿@using NCSw.HERO.Web.Areas.Admin.Models
+@model DepartmentSearchModel
+@{
+    Html.AppendCssFileParts("~/lib/ionicons/css/ionicons-2.0.1.min.css");
+    //page title
+    ViewBag.Title = T("Admin.Directory.Departments").Text;
+    Html.AppendCssFileParts("~/css/admin/main.css");
+    Html.AppendCssFileParts("~/css/directory/mainDirectory.css");
+}
+<nop-antiforgery-token />
+<div class="content-header clearfix header-mainDirectory">
+    <h4 class="pull-left ">
+        @T("Admin.Directory.Departments.List")
+    </h4>
+    <div class="pull-right">
+        <a asp-action="Create" class="btn bg-blue">
+            <i class="fa fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+        <button type="button" id="delete-selected" class="btn bg-red">
+            <i class="fa fa-trash-o"></i>
+            @T("Admin.Common.Delete.Selected")
+        </button>
+        <nop-action-confirmation asp-button-id="delete-selected" />
+        @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DepartmentAddButtons })
+    </div>
+</div>
+
+<div class="content">
+    <div class="form-horizontal">
+        <div class="panel-group">
+
+            <div class="panel panel-default panel-search">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 right-padding-0">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <div class=" search-item">
+                                        <label class="control-label" for="SearchName"><i class="fa fa-search"></i> </label>
+                                        <div class="form-input-item">
+                                            <nop-editor asp-for="SearchName" placeholder="Nhap Tu Khoa" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3 searchBtn">
+                                    <button type="button" id="search-department" class="btn btn-primary btn-search-directory">
+                                        <i class="fa fa-search"></i>
+                                        @T("Admin.Common.Search")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="department-grid"></div>
+                    <script>
+                            $(document).ready(function() {
+                                $("#department-grid").kendoGrid({
+                                    dataSource: {
+                                        type: "json",
+                                        transport: {
+                                            read: {
+                                                url: "@Html.Raw(Url.Action("DepartmentList", "Department"))",
+                                                type: "POST",
+                                                dataType: "json",
+                                                data: function() {
+                                                    var data = {
+                                                        SearchName: $('#@Html.IdFor(model => model.SearchName)').val()
+                                                    };
+                                                    addAntiForgeryToken(data);
+                                                    return data;
+                                                }
+                                            }
+                                        },
+                                        schema: {
+                                            data: "Data",
+                                            total: "Total",
+                                            errors: "Errors"
+                                        },
+                                        error: function(e) {
+                                            display_kendoui_grid_error(e);
+                                            // Cancel the changes
+                                            this.cancelChanges();
+                                        },
+                                        pageSize: @(Model.PageSize),
+                                        serverPaging: true,
+                                        serverFiltering: true,
+                                        serverSorting: true
+                                    },
+                                    pageable: {
+                                        refresh: true,
+                                        pageSizes: [@(Model.AvailablePageSizes)],
+                                        @await Html.PartialAsync("_GridPagerMessages")
+                                    },
+                                    scrollable: false,
+                                    columns: [
+                                        {
+                                            field: "Id",
+                                            headerTemplate: "<label class='checkboxStyleList'><input id='mastercheckbox' type='checkbox'/><span class='checkmarkCheckboxList'></span></label>",
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" },
+                                            template: "<label class='checkboxStyleList'><input type='checkbox' value='#=Id#' class='checkboxGroups'/><span class='checkmarkCheckboxList'></span></label>",
+                                            width: 50
+                                        },
+                                        {
+                                            field: "Code",
+                                            title: "@T("Hero.Admin.Department.Fields.Code")",
+                                            width: 140
+                                        },
+                                        {
+                                            field: "PathName",
+                                            title: "@T("Hero.Admin.Department.Fields.Name")"
+                                        },
+                                        {
+                                            field: "Address",
+                                            title: "@T("Hero.Admin.Department.Fields.Address")",
+                                            width: 180
+                                        },
+                                        {
+                                            field: "Description",
+                                            title: "@T("Hero.Admin.Department.Fields.Description")",
+                                            width: 220
+                                        },
+                                        {
+                                            field: "Active",
+                                            title: "@T("Hero.Common.Fields.Active")",
+                                            width: 100,
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" },
+                                            template: '# if(Active) {# <i class="fa fa-check true-icon"></i> #} else {# <i class="fa fa-close false-icon"></i> #} #'
+                                        },
+                                        {
+                                            field: "Id",
+                                            title: " ",
+                                            width: 50,
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" },
+                                            template: '<a class="btn" href="Edit/#=Id#" title="@T("Admin.Common.Edit")" data-toggle="tooltip" data-placement="top"><i class="fa fa-edit" style="padding: 0px !important;font-size: 18px;"></i></a>'
+                                        }
+                                    ]
+                                });
+                            });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var selectedIds = [];
+    $(document).ready(function () {
+        //search button
+        $('#search-department').click(function () {
+            //search
+            var grid = $('#department-grid').data('kendoGrid');
+            grid.dataSource.page(1); //new search. Set page size to 1
+            //grid.dataSource.read(); we already loaded the grid above using "page" function
+            //clear selected checkboxes
+            $('.checkboxGroups').attr('checked', false).change();
+            selectedIds = [];
+            return false;
+        });
+
+        $("#@Html.IdFor(model => model.SearchName)").keydown(function (event) {
+            if (event.keyCode === 13) {
+                $("#search-department").click();
+                return false;
+            }
+        });
+
+        //delete selected
+        $("#delete-selected-action-confirmation-submit-button").bind("click", function () {
+            var postData = {
+                selectedIds: selectedIds
+            };
+            addAntiForgeryToken(postData);
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "@(Url.Action("DeleteSelected", "Department"))",
+                data: postData,
+                complete: function (data) {
+                    //reload grid
+                    var grid = $('#department-grid').data('kendoGrid');
+                    grid.dataSource.read();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(thrownError);
+                }
+            });
+            $('#delete-selected-action-confirmation').modal('toggle');
+            return false;
+        });
+
+        $('#mastercheckbox').click(function () {
+            $('.checkboxGroups').attr('checked', $(this).is(':checked')).change();
+        });
+
+        //wire up checkboxes.
+        $('#department-grid').on('change', 'input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]', function (e) {
+            var $check = $(this);
+            var checked = jQuery.inArray($check.val(), selectedIds);
+            if ($check.is(":checked") == true) {
+                if (checked == -1) {
+                    //add id to selectedIds.
+                    selectedIds.push($check.val());
+                }
+            } else if (checked > -1) {
+                //remove id from selectedIds.
+                selectedIds = $.grep(selectedIds, function (item, index) {
+                    return item != $check.val();
+                });
+            }
+            updateMasterCheckbox();
+        });
+
+        $("#SearchName").attr("placeholder", "@T("Admin.Common.SearchAllItem.Placeholder")");
+    });
+
+    function onDataBound(e) {
+        $('#department-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').each(function () {
+            var currentId = $(this).val();
+            var checked = jQuery.inArray(currentId, selectedIds);
+            //set checked based on if current checkbox's value is in selectedIds.
+            $(this).attr('checked', checked > -1);
+        });
+
+        updateMasterCheckbox();
+    }
+
+    function updateMasterCheckbox() {
+        var numChkBoxes = $('#department-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').length;
+        var numChkBoxesChecked = $('#department-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]:checked').length;
+        $('#mastercheckbox').attr('checked', numChkBoxes == numChkBoxesChecked && numChkBoxes > 0);
+    }
+</script>

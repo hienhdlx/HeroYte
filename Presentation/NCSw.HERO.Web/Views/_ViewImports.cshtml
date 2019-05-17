@@ -1,0 +1,34 @@
+﻿@inherits NCSw.HERO.Web.Framework.Mvc.Razor.NopRazorPage<TModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*we remove the default InputTagHelper to prevent the checkbox duplicating: https://stackoverflow.com/questions/42544961/asp-net-core-custom-input-tag-helper-rendering-duplicate-checkboxes*@
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, NCSw.HERO.Web.Framework
+@addTagHelper *, MiniProfiler.AspNetCore.Mvc
+
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using NCSw.HERO.Web.Extensions
+@using NCSw.HERO.Web.Framework
+@using NCSw.HERO.Web.Framework.Extensions
+@using NCSw.HERO.Web.Framework.Infrastructure
+@using NCSw.HERO.Web.Framework.Models
+@using NCSw.HERO.Web.Framework.Security.Captcha
+@using NCSw.HERO.Web.Framework.Security.Honeypot
+@using NCSw.HERO.Web.Framework.Themes
+@using NCSw.HERO.Web.Framework.UI
+@using NCSw.HERO.Web.Models.Blogs
+@using NCSw.HERO.Web.Models.Boards
+@using NCSw.HERO.Web.Models.Catalog
+@using NCSw.HERO.Web.Models.Checkout
+@using NCSw.HERO.Web.Models.Cms
+@using NCSw.HERO.Web.Models.Common
+@using NCSw.HERO.Web.Models.Customer
+@using NCSw.HERO.Web.Models.Media
+@using NCSw.HERO.Web.Models.News
+@using NCSw.HERO.Web.Models.Newsletter
+@using NCSw.HERO.Web.Models.Order
+@using NCSw.HERO.Web.Models.Polls
+@using NCSw.HERO.Web.Models.PrivateMessages
+@using NCSw.HERO.Web.Models.Profile
+@using NCSw.HERO.Web.Models.ShoppingCart
+@using NCSw.HERO.Web.Models.Topics
+@using NCSw.HERO.Web.Models.Vendors

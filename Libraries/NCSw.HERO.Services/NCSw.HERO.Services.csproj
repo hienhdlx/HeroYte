@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Copyright>Copyright © Nop Solutions, Ltd</Copyright>
+    <Company>Nop Solutions, Ltd</Company>
+    <Authors>Nop Solutions, Ltd</Authors>
+    <Version>4.1.0.0</Version>
+    <Description>This project contains a set of core services, business logic, validations or calculations related with the data, if needed. Some people call it Business Access Layer (BAL).</Description>
+    <PackageLicenseUrl>http://www.nopcommerce.com/licensev3.aspx</PackageLicenseUrl> 
+    <PackageProjectUrl>http://www.nopcommerce.com/</PackageProjectUrl> 
+    <RepositoryUrl>https://github.com/nopSolutions/nopCommerce</RepositoryUrl> 
+    <RepositoryType>Git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Common\**" />
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="Common\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="Common\**" />
+    <None Remove="obj\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Common\AddressAttributeExtensions.cs" />
+    <Compile Include="Common\AddressAttributeFormatter.cs" />
+    <Compile Include="Common\AddressAttributeParser.cs" />
+    <Compile Include="Common\AddressAttributeService.cs" />
+    <Compile Include="Common\AddressService.cs" />
+    <Compile Include="Common\FulltextService.cs" />
+    <Compile Include="Common\GenericAttributeService.cs" />
+    <Compile Include="Common\IAddressAttributeFormatter.cs" />
+    <Compile Include="Common\IAddressAttributeParser.cs" />
+    <Compile Include="Common\IAddressAttributeService.cs" />
+    <Compile Include="Common\IAddressService.cs" />
+    <Compile Include="Common\IFulltextService.cs" />
+    <Compile Include="Common\IGenericAttributeService.cs" />
+    <Compile Include="Common\IMaintenanceService.cs" />
+    <Compile Include="Common\IMiscPlugin.cs" />
+    <Compile Include="Common\IPdfService.cs" />
+    <Compile Include="Common\ISearchTermService.cs" />
+    <Compile Include="Common\KeepAliveTask.cs" />
+    <Compile Include="Common\MaintenanceService.cs" />
+    <Compile Include="Common\NopCommonDefaults.cs" />
+    <Compile Include="Common\PdfService.cs" />
+    <Compile Include="Common\SearchTermService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="4.5.2.1" />
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.4.4" />
+    <PackageReference Include="MaxMind.GeoIP2" Version="3.0.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0004" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.8.11" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.5.3" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NCSw.HERO.Core\NCSw.HERO.Core.csproj" />
+    <ProjectReference Include="..\NCSw.HERO.Data\NCSw.HERO.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Security\AclService.cs">
+      <ExcludeFromSourceAnalysis>False</ExcludeFromSourceAnalysis>
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+  </ItemGroup>
+
+</Project>

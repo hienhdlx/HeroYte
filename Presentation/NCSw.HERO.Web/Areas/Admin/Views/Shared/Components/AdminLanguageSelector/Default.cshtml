@@ -1,0 +1,35 @@
+﻿@model LanguageSelectorModel
+@using System.Net
+@using Microsoft.AspNetCore.Http
+@using NCSw.HERO.Core;
+@inject IWebHelper webHelper
+@inject IHttpContextAccessor httpContextAccessor
+@if (Model.AvailableLanguages.Count > 1)
+{
+    <div>
+        @{
+            @*<a class="" >
+                <i class="fa fa-globe" aria-hidden="true" style="font-size: 20px;padding-right: 0px !important;text-align: center;padding-top:14px;"></i>
+            </a>*@
+            <div class="dropdown-toggle" data-toggle="dropdown">
+                <img class=""
+                     src="@Url.Content("~/images/flags/" + Model.CurrentLanguage.FlagImageFileName) " />
+            </div>
+            
+            var rawUrl = webHelper.GetRawUrl(httpContextAccessor.HttpContext.Request);
+            <ul class="dropdown-menu">
+                @foreach (var lang in Model.AvailableLanguages)
+                {
+                    <li>
+                        <a href="@webHelper.ModifyQueryString(Url.RouteUrl("ChangeLanguage", new {langid = lang.Id}, webHelper.CurrentRequestProtocol), "returnurl", rawUrl)" title="@lang.Name">
+                            <img title='@lang.Name' alt='@lang.Name' @(lang.Id == Model.CurrentLanguage.Id ? " class=selected" : null)
+                                 src="@Url.Content("~/images/flags/" + @lang.FlagImageFileName) " />
+                            @lang.Name
+
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+}

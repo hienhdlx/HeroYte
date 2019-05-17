@@ -1,0 +1,307 @@
+﻿@model DashboardModel
+@inject IPermissionService permissionService
+@using NCSw.HERO.Services.Security
+@{
+    Html.AppendCssFileParts("~/lib/ionicons/css/ionicons-2.0.1.min.css");
+    Html.AppendCssFileParts("~/css/admin/main.css");
+    Html.AppendCssFileParts("~/css/dashboard/dashboard.css");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/js/dashboard/dashboard.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/js/main.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/lib/Highcharts-7.1.0/highcharts.js");
+    //page title
+    ViewBag.Title = T("Admin.Dashboard").Text;
+
+    var canManageOrders = permissionService.Authorize(StandardPermissionProvider.ManageOrders);
+    var canManageCustomers = permissionService.Authorize(StandardPermissionProvider.ManageCustomers);
+    var canManageProducts = permissionService.Authorize(StandardPermissionProvider.ManageProducts);
+    var canManageReturnRequests = permissionService.Authorize(StandardPermissionProvider.ManageReturnRequests);
+}
+<nop-antiforgery-token />
+<div class="main">
+        <div class="requestQuestion">
+            <h5>@T("Admin.Dartboard.HandlingRequirement")</h5>
+
+            <div class="requestMonth">
+                <select class="form-control" id="">
+                    <option>Tháng 1</option>
+                    <option>Tháng 2</option>
+                    <option>Tháng 3</option>
+                    <option>Tháng 4</option>
+                    <option>Tháng 5</option>
+                </select>
+                <i class="fa fa-chevron-down"></i>
+            </div>
+
+            <div class="requestFollow">
+                <select class="form-control" id="">
+                    <option>Theo Tháng</option>
+                    <option>Theo Năm</option>
+                    <option>Theo Ngày</option>
+                </select>
+                <i class="fa fa-chevron-down"></i>
+            </div>
+
+            <div class="requestRoom">
+                <select class="form-control" id="">
+                    <option>Phòng</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <i class="fa fa-chevron-down"></i>
+            </div>
+
+            <div class="requestChannel">
+                <select class="form-control" id="">
+                    <option>Kênh tiếp nhận</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <i class="fa fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <div class="overViewTotal">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="overViewItem">
+                        <div class="col-md-4 iconCalendar">
+                            <img src="~/css/dashboard/images/icon-calendar.png">
+                        </div>
+                        <div class="col-md-8 no-padding">
+                            <h5>@T("Admin.Dartboard.TotalAppointmentRequest")</h5>
+                            <p>3.590</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="overViewItem">
+                        <div class="col-md-4 iconWaitRequest">
+                            <img src="~/css/dashboard/images/icon-waitRequest.png">
+                        </div>
+                        <div class="col-md-8 no-padding">
+                            <h5>@T("Admin.Dartboard.TotalPendingRequest")</h5>
+                            <p>2.400</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="overViewItem">
+                        <div class="col-md-4 iconRequestAccept">
+                            <img src="~/css/dashboard/images/icon-requestAccept.png">
+                        </div>
+                        <div class="col-md-8 no-padding">
+                            <h5>@T("Admin.Dartboard.TotalApprovedRequest")</h5>
+                            <p>990</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="overViewItem">
+                        <div class="col-md-4 iconFinish">
+                            <img src="~/css/dashboard/images/icon-finish.png">
+                        </div>
+                        <div class="col-md-8 no-padding">
+                            <h5>@T("Admin.Dartboard.TotalCompleted")</h5>
+                            <p>2.300</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="editDashBoard">
+            <a href="#">Edit Dashboard</a>
+        </div>
+
+        <div class="dashBoardOverView">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="dashboardItem">
+                        <h5>@T("Admin.Dartboard.CustomerHealthServiceStatistics")</h5>
+                        <div id="highChartColumn">
+
+                        </div>
+                        <div class="voteViewAll voteViewAllFollowChart">
+                            <a href="#">@T("Admin.Dartboard.ViewDetails")<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="dashboardItem">
+                        <h5>@T("Admin.Dartboard.Rating")</h5>
+
+                        <div class="voteDashBoard">
+                            <div class="col-md-4">
+                                <h1>4.8<span>/5</span></h1>
+                                <div class="voteStarIcon">
+                                    <img src="~/css/dashboard/images/icon-starFirstBig.png">
+                                    <img src="~/css/dashboard/images/icon-starGoodBig.png">
+                                    <img src="~/css/dashboard/images/icon-starGoodBig.png">
+                                    <img src="~/css/dashboard/images/icon-starGoodBig.png">
+                                    <img src="~/css/dashboard/images/icon-starBadBig.png">
+                                </div>
+                                <p>(250 đánh giá)</p>
+                                <div class="voteViewAll">
+                                    <a href="#">@T("Admin.Dartboard.ViewDetails")<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <ul>
+                                    <li>
+                                        <div class="voteStarIconSmall">
+                                            <img src="~/css/dashboard/images/icon-starFirst.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                        </div>
+                                        <div class="voteStarLineEmpty"></div>
+                                        <p class="voteNumberStar">180</p>
+                                    </li>
+                                    <li>
+                                        <div class="voteStarIconSmall">
+                                            <img src="~/css/dashboard/images/icon-starFirst.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                        </div>
+                                        <div class="voteStarLineEmpty"></div>
+                                        <p class="voteNumberStar">20</p>
+                                    </li>
+                                    <li>
+                                        <div class="voteStarIconSmall">
+                                            <img src="~/css/dashboard/images/icon-starFirst.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                        </div>
+                                        <div class="voteStarLineEmpty"></div>
+                                        <p class="voteNumberStar">30</p>
+                                    </li>
+                                    <li>
+                                        <div class="voteStarIconSmall">
+                                            <img src="~/css/dashboard/images/icon-starFirst.png">
+                                            <img src="~/css/dashboard/images/icon-starGood.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                        </div>
+                                        <div class="voteStarLineEmpty"></div>
+                                        <p class="voteNumberStar">14</p>
+                                    </li>
+                                    <li>
+                                        <div class="voteStarIconSmall">
+                                            <img src="~/css/dashboard/images/icon-starFirst.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                            <img src="~/css/dashboard/images/icon-starBad.png">
+                                        </div>
+                                        <div class="voteStarLineEmpty"></div>
+                                        <p class="voteNumberStar">1</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+@*<div class="content">
+    <div class="row">
+        <div class="col-md-12">
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardTop })
+            @if (!Model.IsLoggedInAsVendor)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        @await Component.InvokeAsync("NopCommerceNews")
+                    </div>
+                </div>
+            }
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardNewsAfter })
+            @if (!Model.IsLoggedInAsVendor && canManageOrders && canManageCustomers && canManageProducts && canManageReturnRequests)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        @await Component.InvokeAsync("CommonStatistics")
+                    </div>
+                </div>
+            }
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardCommonstatisticsAfter })
+            @if (!Model.IsLoggedInAsVendor && (canManageOrders || canManageCustomers))
+            {
+                <div class="row">
+                    @if (!Model.IsLoggedInAsVendor && canManageOrders)
+                    {
+                        <div class="col-md-6">
+                            @await Html.PartialAsync("_OrderStatistics")
+                        </div>
+                    }
+                    @if (!Model.IsLoggedInAsVendor && canManageCustomers)
+                    {
+                        <div class="col-md-6">
+                            @await Html.PartialAsync("_CustomerStatistics")
+                        </div>
+                    }
+                </div>
+            }
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardCustomerorderchartsAfter })
+            @if (!Model.IsLoggedInAsVendor && canManageOrders)
+            {
+                <div class="row">
+                    <div class="col-md-8">
+                        @await Html.PartialAsync("_OrderAverageReport")
+                    </div>
+                    <div class="col-md-4">
+                        @await Html.PartialAsync("_OrderIncompleteReport")
+                    </div>
+                </div>
+            }
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardOrderreportsAfter })
+            @if (!Model.IsLoggedInAsVendor && (canManageOrders || canManageProducts))
+            {
+                <div class="row">
+                    @if (canManageOrders)
+                    {
+                        <div class="col-md-8">
+                            @await Html.PartialAsync("_LatestOrders")
+                        </div>
+                    }
+                    <div class="col-md-4">
+                        @if (canManageProducts)
+                        {
+                            @await Html.PartialAsync("_PopularSearchTermsReport", Model.PopularSearchTerms)
+                        }
+                    </div>
+                </div>
+            }
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardLatestordersSearchtermsAfter })
+            @if (canManageOrders)
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                        @await Html.PartialAsync("_BestsellersBriefReportByQuantity", Model.BestsellersByQuantity)
+                    </div>
+                    <div class="col-md-6">
+                        @await Html.PartialAsync("_BestsellersBriefReportByAmount", Model.BestsellersByAmount)
+                    </div>
+                </div>
+            }
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DashboardBottom })
+        </div>
+    </div>
+</div>*@

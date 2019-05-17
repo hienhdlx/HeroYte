@@ -1,0 +1,16 @@
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\bin\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.deps.json
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\bin\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.dll
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\bin\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.pdb
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\bin\Debug\netcoreapp2.2\NCSw.HERO.Core.dll
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\bin\Debug\netcoreapp2.2\NCSw.HERO.Data.dll
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\bin\Debug\netcoreapp2.2\NCSw.HERO.Services.dll
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\bin\Debug\netcoreapp2.2\NCSw.HERO.Core.pdb
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\bin\Debug\netcoreapp2.2\NCSw.HERO.Data.pdb
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\bin\Debug\netcoreapp2.2\NCSw.HERO.Services.pdb
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\obj\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.csprojAssemblyReference.cache
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\obj\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.csproj.CoreCompileInputs.cache
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\obj\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.AssemblyInfoInputs.cache
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\obj\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.AssemblyInfo.cs
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\obj\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.csproj.CopyComplete
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\obj\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.dll
+E:\HERO\Presentation\NCSw.HERO.Web.Framework\obj\Debug\netcoreapp2.2\NCSw.HERO.Web.Framework.pdb

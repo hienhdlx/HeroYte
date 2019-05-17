@@ -1,0 +1,178 @@
+@using NCSw.HERO.Web.Areas.Admin.Models
+@model DepartmentModel
+
+@{
+    //page title
+    ViewBag.Title = T("Admin.Department.EditDepartment").Text;
+    //active menu item (system name)
+    Html.SetActiveMenuItemSystemName("Department");
+}
+
+<form asp-controller="Department" asp-action="Edit" method="post">
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            @T("Admin.Department.EditDepartment") - @Model.Name
+            <small>
+                <i class="fa fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("Admin.Department.BackToList")</a>
+            </small>
+        </h1>
+        <div class="pull-right">
+            <button type="submit" name="save" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                @T("Admin.Common.Save")
+            </button>
+            <button type="submit" name="save-continue" class="btn bg-blue">
+                <i class="fa fa-floppy-o"></i>
+                @T("Admin.Common.SaveContinue")
+            </button>
+            <span id="deparment-delete" class="btn bg-red">
+                <i class="fa fa-trash-o"></i>
+                @T("Admin.Common.Delete")
+            </span>
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.DepartmentDetailsButtons, additionalData = Model })
+        </div>
+    </div>
+
+    <div asp-validation-summary="All"></div>
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <nop-label asp-for="Code" />
+                            </div>
+                            <div class="col-md-6">
+                                <nop-editor asp-for="Code" asp-required="true" />
+                                <span asp-validation-for="Code"></span>
+                            </div>
+                        </div>
+                        @(Html.LocalizedEditor<DepartmentModel, DepartmentLocalizedModel>("department-localized",
+                            @<div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <nop-label asp-for="@Model.Locales[item].Name" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <nop-editor asp-for="@Model.Locales[item].Name" asp-required="true" />
+                                        <span asp-validation-for="@Model.Locales[item].Name"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <nop-label asp-for="@Model.Locales[item].Address" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <nop-editor asp-for="@Model.Locales[item].Address" />
+                                        <span asp-validation-for="@Model.Locales[item].Address"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <nop-label asp-for="@Model.Locales[item].Description" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <nop-textarea asp-for="@Model.Locales[item].Description" />
+                                        <span asp-validation-for="@Model.Locales[item].Description"></span>
+                                    </div>
+                                </div>
+                                <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+                            </div>
+                            ,
+                            @<div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <nop-label asp-for="Name" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <nop-editor asp-for="Name" asp-required="true" />
+                                        <span asp-validation-for="Name"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <nop-label asp-for="Address" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <nop-editor asp-for="Address" />
+                                        <span asp-validation-for="Address"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        <nop-label asp-for="Description" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <nop-textarea asp-for="Description" />
+                                        <span asp-validation-for="Description"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+
+                    <div class="form-group" @(Model.DepartmentListTemplates.SelectionIsNotPossible() ? Html.Raw("style=\"display:none\"") : null)>
+                        <div class="col-md-2">
+                            <nop-label asp-for="Path" />
+                        </div>
+                        <div class="col-md-6">
+                            <nop-select asp-for="Path" asp-items="Model.DepartmentListTemplates" />
+                            <span asp-validation-for="Path"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display: none;">
+                        <div class="col-md-2">
+                            <nop-label asp-for="ParentId" />
+                        </div>
+                        <div class="col-md-6">
+                            <nop-editor asp-for="ParentId" asp-required="true" />
+                            <span asp-validation-for="ParentId"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <nop-label asp-for="Active" />
+                        </div>
+                        <div class="col-md-6">
+                            <nop-editor asp-for="Active" />
+                            <span asp-validation-for="Active"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display: none;">
+                        <div class="col-md-2">
+                            <nop-label asp-for="CreatedBy" />
+                        </div>
+                        <div class="col-md-6">
+                            <nop-editor asp-for="CreatedBy" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display: none;">
+                        <div class="col-md-2">
+                            <nop-label asp-for="UpdatedBy" />
+                        </div>
+                        <div class="col-md-6">
+                            <nop-editor asp-for="UpdatedBy" />
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="CreatedOnUtc" type="hidden" />
+    <input asp-for="UpdatedOnUtc" type="hidden" />
+    <script>
+        var accountId = $(".navbar-custom-menu .nav.navbar-nav .account-info p").text();
+        $("#CreatedBy").val(accountId); 
+        $("#UpdatedBy").val(accountId);
+        $("#Path").addClass("select2");
+    </script>
+</form>
+<nop-delete-confirmation asp-model-id="@Model.Id" asp-button-id="deparment-delete" />

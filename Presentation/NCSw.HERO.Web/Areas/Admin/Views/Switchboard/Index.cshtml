@@ -1,0 +1,815 @@
+﻿@using NCSw.HERO.Web.Areas.Admin.Models
+@model AppointmentModel
+
+@{
+    Html.AppendCssFileParts("~/lib/ionicons/css/ionicons-2.0.1.min.css");
+
+    //page title
+    ViewBag.Title = T("Admin.Switchboard").Text;
+    Html.AppendCssFileParts("~/css/admin/main.css");
+    Html.AppendCssFileParts("~/css/switchboard/switchboard.css");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/js/switchboard/switchboard.js");
+
+}
+<nop-antiforgery-token />
+
+<div class="main" id="switchboard-form">
+
+    <div class="col-md-6" style="padding-left: 0px;">
+        <h4 class="title-item">@T("Admin.SwitchBoard.ConsumerInformation")</h4>
+        <div class="infoGuest">
+            <div class="form-group">
+                <div class="col-md-3 right-padding-0">
+                    <nop-label asp-for="AppointmentCode" />
+                </div>
+                <div class="col-md-6 left-padding-0">
+                    <nop-editor asp-for="AppointmentCode" />
+                    <span asp-validation-for="AppointmentCode"></span>
+                </div>
+                <div class="col-md-3 left-padding-0">
+                    <button type="button" class="btnHistoryExamination" data-toggle="modal" data-target="#HistoryModal">@T("Admin.SwitchBoard.HistoryExamination")</button>
+                    <!-- Modal -->
+                    <div class="modal fade modal-switchboard" id="HistoryModal" tabindex="-1" role="dialog" aria-labelledby="HistoryModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-head">
+                                    <h3 class="modal-head__title">Lịch sử KCB</h3>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body position-rel">
+                                    <div class="history-list">
+                                        <div class="item">
+                                            <div class="col-md-3 no-padding item__time">
+                                                <label class="btn btn-white btn-bd-opacity btn-bd-w-2">9:00   12/2/2019</label>
+                                            </div>
+                                            <div class="col-md-1 item__space">
+                                                <span></span>
+                                            </div>
+                                            <div class="col-md-8 item__content">
+                                                <div class="item__info">
+                                                    <div class="col-md-8 no-padding item__data">
+                                                        <ul>
+                                                            <li>
+                                                                <label>Dịch vụ: </label>
+                                                                <span>Tai mũi họng</span>
+                                                            </li>
+                                                            <li>
+                                                                <label>Bác sỹ: </label>
+                                                                <span>Trần Minh Đạt</span>
+                                                            </li>
+                                                            <li>
+                                                                <label>Phòng: </label>
+                                                                <span>303</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-4 item__rate">
+                                                        <a href="javascript:;" class="btn btn-white btnVoteSwitchboardHistory">
+                                                            Đánh giá: 4/5 <i class="fa fa-star"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="item__result">
+                                                    <label>Kết luận của bác sỹ:</label>
+                                                    <span>Viêm họng cấp</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="col-md-3 no-padding item__time">
+                                                <label class="btn btn-white btn-bd-opacity btn-bd-w-2">09:00   12/12/2019</label>
+                                            </div>
+                                            <div class="col-md-1 item__space">
+                                                <span></span>
+                                            </div>
+                                            <div class="col-md-8 item__content">
+                                                <div class="item__info">
+                                                    <div class="col-md-8 no-padding item__data">
+                                                        <ul>
+                                                            <li>
+                                                                <label>Dịch vụ: </label>
+                                                                <span>Tai mũi họng</span>
+                                                            </li>
+                                                            <li>
+                                                                <label>Bác sỹ: </label>
+                                                                <span>Trần Minh Đạt</span>
+                                                            </li>
+                                                            <li>
+                                                                <label>Phòng: </label>
+                                                                <span>303</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-4 item__rate">
+                                                        <a href="javascript:;" class="btn btn-white btnVoteSwitchboardHistory">
+                                                            Đánh giá: 4/5 <i class="fa fa-star"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="item__result">
+                                                    <label>Kết luận của bác sỹ:</label>
+                                                    <span>Viêm họng cấp</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item item--more">
+                                            <a href="#" class="btn btn-white btn-bd-opacity btn-bd-w-2">Xem thêm</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3 right-padding-0">
+                    <nop-label asp-for="FullName" />
+                </div>
+                <div class="col-md-9 left-padding-0">
+                    <nop-editor asp-for="FullName" />
+                    <span asp-validation-for="FullName"></span>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-7">
+                    <div class="col-md-5 left-padding-0">
+
+                        <nop-label asp-for="BirthDay" />
+                    </div>
+                    <div class="col-md-7 no-padding">
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.BirthDay, new { @id = "BirthDay", @class = "form-control" })
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 left-padding-0">
+                    <div class="col-md-3 no-padding" style="width: 30%;">
+                        <nop-label asp-for="Gender" />
+                    </div>
+                    <div class="col-md-8 no-padding" style="width: 70%;">
+                        <label class="genderRadio">
+                            @T("Admin.SwitchBoard.Male")
+                            @Html.RadioButton("Gender", 1, (Model.Gender == 1), new { id = "Gender_Male" })
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="genderRadio">
+                            @T("Admin.SwitchBoard.Female")
+                            @Html.RadioButton("Gender", 2, (Model.Gender == 2), new { id = "Gender_Female" })
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-7">
+                    <div class="col-md-5 no-padding">
+                        <nop-label asp-for="IdentityCard" />
+                    </div>
+                    <div class="col-md-7 no-padding">
+                        <nop-editor asp-for="IdentityCard" />
+                        <span asp-validation-for="IdentityCard"></span>
+                    </div>
+                </div>
+                <div class="col-md-5 left-padding-0">
+                    <div class="col-md-3 no-padding">
+                        <nop-label asp-for="PhoneNumber" />
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        <nop-editor asp-for="PhoneNumber" />
+                        <span asp-validation-for="PhoneNumber"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="Email" />
+                </div>
+                <div class="col-md-9 left-padding-0">
+                    <nop-editor asp-for="Email" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-7">
+                    <div class="col-md-5 left-padding-0">
+                        <nop-label asp-for="CountryId" />
+                    </div>
+                    <div class="col-md-7 no-padding">
+                        <select class="form-control select2" id="Country" name="Country" data-width="100%" runat="server">
+                            <option value="">Việt Nam</option>
+                            <option value="">Nhật Bản</option>
+                            <option value="">Thái Lan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5 left-padding-0">
+                    <div class="col-md-3 no-padding">
+                        <nop-label asp-for="ProvinceId" />
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        <select class="form-control select2" id="City" name="City">
+                            <option value="">Hà Nội</option>
+                            <option value="">Hải Phòng</option>
+                            <option value="">Phú Thọ</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-7">
+                    <div class="col-md-5 left-padding-0">
+                        <nop-label asp-for="DistrictId" />
+                    </div>
+                    <div class="col-md-7 no-padding">
+                        <select class="form-control select2" id="County" name="County">
+                            <option value="">Cầu Giấy</option>
+                            <option value="">Hà Đông</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5 left-padding-0">
+                    <div class="col-md-3 no-padding">
+                        <nop-label asp-for="WardId" />
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        <select class="form-control select2" id="District" name="District">
+                            <option value="">Cầu Giấy</option>
+                            <option value="">Hà Đông</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="Address" />
+                </div>
+                <div class="col-md-9 left-padding-0">
+                    <nop-editor asp-for="Address" />
+                    <span asp-validation-for="Address"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="RegisterName" />
+                </div>
+                <div class="col-md-9 left-padding-0">
+                    <nop-editor asp-for="RegisterName" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3 right-padding-0">
+                    <nop-label asp-for="RegisterPhoneNumber" />
+                </div>
+                <div class="col-md-9 left-padding-0">
+                    <nop-editor asp-for="RegisterPhoneNumber" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="Description" />
+                </div>
+                <div class="col-md-9 left-padding-0">
+                    <nop-textarea asp-for="Description" />
+                    <span asp-validation-for="Description"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="checkboxStyle" id="checkedHeilthInsurance">
+                        @T("Admin.SwitchBoard.HealthInsurance")
+                        <input type="checkbox">
+                        <span class="checkmarkCheckbox"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group checkingHeilthInsuranceShow">
+                <div class="col-md-7">
+                    <div class="col-md-5 left-padding-0">
+                        <label class="control-label text-align-left">@T("Admin.SwitchBoard.Insurance")</label>
+                    </div>
+                    <div class="col-md-7 no-padding">
+                        <input type="text" name="HeilthInsuranceNumber" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-5 left-padding-0">
+                    <div class="col-md-3 no-padding" style="font-size: 13px;">
+                        <label class="control-label text-align-left longLineHeightLabel">@T("Admin.SwitchBoard.RegisterPlaceInsurance")</label>
+                    </div>
+                    <div class="col-md-9 right-padding-0">
+                        <input type="text" name="HeilthInsuranceAddress" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-6" style="padding-right: 0px;">
+        <h4 class="title-item">@T("Admin.SwitchBoard.BookedInformation")</h4>
+        <div class="infoAppoiment">
+
+
+            <div class="form-group">
+                <div class="col-md-7">
+                    <div class="col-md-5 left-padding-0">
+                        <nop-label asp-for="AppointmentDay" />
+                    </div>
+                    <div class="col-md-7 no-padding">
+                        <div class="input-group">
+                            @Html.TextBoxFor(m => m.AppointmentDay, new { @id = "AppointmentDay", @class = "form-control" })
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 left-padding-0">
+                    <div class="col-md-3 no-padding">
+                        <nop-label asp-for="AppointmentHour" />
+                    </div>
+                    <div class="col-md-9 no-padding appointmentHourItem">
+                        <nop-editor asp-for="AppointmentHour" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <nop-label asp-for="ServiceId" />
+                </div>
+                <div class="col-md-9 left-padding-0">
+                    <nop-select asp-for="ServiceId" asp-items="Model.ServiceListTemplates" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-7">
+                    <div class="col-md-5 left-padding-0">
+                        <label class="control-label text-align-left longLineHeightLabel">@T("Admin.SwitchBoard.DoctorRank")</label>
+                    </div>
+                    <div class="col-md-7 no-padding">
+                        <select class="form-control select2" id="DoctorRank" name="DoctorRank">
+                            <option value="">Giáo sư</option>
+                            <option value="">Thực tập</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5 left-padding-0">
+                    <div class="col-md-3 no-padding">
+                        <nop-label asp-for="DoctorId" />
+                    </div>
+                    <div class="col-md-9 no-padding">
+                        <nop-select asp-for="DoctorId" asp-items="Model.DoctorListTemplates" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group lineDrop">
+                <div class="col-md-7">
+                    <div class="col-md-5 left-padding-0">
+                        <nop-label asp-for="DepartmentId" />
+                    </div>
+                    <div class="col-md-7 no-padding">
+                        <nop-select asp-for="DepartmentId" asp-items="Model.DepartmentListTemplates" />
+                    </div>
+                </div>
+                <div class="col-md-5 left-padding-0">
+                    <div class="col-md-3 no-padding">
+                        <label class="control-label text-align-left"> </label>
+                    </div>
+                    <div class="col-md-9 right-padding-0">
+                        <button class="btnCreate">@T("Admin.SwitchBoard.Registration")</button>
+                    </div>
+                </div>
+            </div>
+
+            @* check time list end suggestion *@
+            <div class="form-group">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#morning">@T("Admin.SwitchBoard.Morning")</a></li>
+                        <li><a data-toggle="tab" href="#afternoon">@T("Admin.SwitchBoard.Afternoon")</a></li>
+                        <li><a data-toggle="tab" href="#all">@T("Admin.SwitchBoard.All")</a></li>
+                        <li class="tabSelectDateList">
+                            <div class='input-group date' id='DateSlotItem'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar"></span>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="morning" class="tab-pane fade in active">
+                            <div class="listTimeAppoiment">
+                                <div>07:00</div>
+                                <div class="timeDisabled">07:05</div>
+                                <div class="pendingCheck">07:10</div>
+                                <div>07:15</div>
+                                <div class="timeDisabled">07:20</div>
+                                <div>07:25</div>
+                                <div class="timeDisabled">07:35</div>
+                                <div>07:40</div>
+                                <div>07:45</div>
+                                <div class="timeDisabled">07:50</div>
+                                <div>07:55</div>
+                                <div>08:00</div>
+                                <div>08:05</div>
+                                <div class="timeDisabled">08:10</div>
+                                <div>08:15</div>
+                                <div class="timeDisabled">08:20</div>
+                                <div>08:25</div>
+                                <div>08:30</div>
+                                <div class="timeDisabled">08:35</div>
+                                <div>08:40</div>
+                                <div>08:45</div>
+                                <div>08:50</div>
+                                <div>08:55</div>
+                                <div class="timeDisabled">09:00</div>
+                                <div>09:05</div>
+                                <div class="timeDisabled">09:10</div>
+                                <div>09:15</div>
+                                <div class="timeDisabled">09:20</div>
+                                <div>09:25</div>
+                                <div>09:30</div>
+                                <div class="timeDisabled">09:35</div>
+                                <div>09:40</div>
+                                <div>09:45</div>
+                                <div>09:50</div>
+                                <div class="timeDisabled">09:55</div>
+                                <div>10:00</div>
+                                <div>10:05</div>
+                                <div>10:10</div>
+                                <div class="timeDisabled">10:15</div>
+                                <div>10:20</div>
+                                <div>10:25</div>
+                                <div class="timeDisabled">10:30</div>
+                                <div>10:35</div>
+                                <div>10:40</div>
+                                <div class="timeDisabled">10:45</div>
+                                <div>10:50</div>
+                                <div>10:55</div>
+                                <div>11:00</div>
+                                <div>11:05</div>
+                                <div>11:10</div>
+                                <div>11:15</div>
+                                <div>11:20</div>
+                                <div>11:25</div>
+                                <div>11:30</div>
+                                <div>11:35</div>
+                                <div>11:40</div>
+                                <div>11:45</div>
+                                <div>11:50</div>
+                                <div>11:55</div>
+                                <div>11:00</div>
+                                <div>11:05</div>
+                                <div>11:10</div>
+                                <div>11:15</div>
+                                <div>11:20</div>
+                                <div>11:25</div>
+                                <div>11:30</div>
+                                <div>11:35</div>
+                                <div>11:40</div>
+                                <div>11:45</div>
+                                <div>11:50</div>
+                                <div>11:55</div>
+                                <div>12:00</div>
+                            </div>
+                        </div>
+                        <div id="afternoon" class="tab-pane fade">
+                            <div class="listTimeAppoiment">
+                                <div>07:00</div>
+                                <div class="timeDisabled">07:05</div>
+                                <div>07:10</div>
+                                <div>07:15</div>
+                                <div class="timeDisabled">07:20</div>
+                                <div>07:25</div>
+                                <div class="timeDisabled">07:35</div>
+                                <div>07:40</div>
+                                <div>07:45</div>
+                                <div class="timeDisabled">07:50</div>
+                                <div>07:55</div>
+                                <div>08:00</div>
+                                <div>08:05</div>
+                                <div class="timeDisabled">08:10</div>
+                                <div>08:15</div>
+                                <div class="timeDisabled">08:20</div>
+                                <div>08:25</div>
+                                <div>08:30</div>
+                                <div class="timeDisabled">08:35</div>
+                                <div>08:40</div>
+                                <div>08:45</div>
+                                <div>08:50</div>
+                                <div>08:55</div>
+                                <div class="timeDisabled">09:00</div>
+                                <div>09:05</div>
+                                <div class="timeDisabled">09:10</div>
+                                <div>09:15</div>
+                                <div class="timeDisabled">09:20</div>
+                                <div>09:25</div>
+                                <div>09:30</div>
+                                <div class="timeDisabled">09:35</div>
+                                <div>09:40</div>
+                                <div>09:45</div>
+                                <div>09:50</div>
+                                <div class="timeDisabled">09:55</div>
+                                <div>10:00</div>
+                                <div>10:05</div>
+                                <div>10:10</div>
+                                <div class="timeDisabled">10:15</div>
+                                <div>10:20</div>
+                                <div>10:25</div>
+                                <div class="timeDisabled">10:30</div>
+                                <div>10:35</div>
+                                <div>10:40</div>
+                                <div class="timeDisabled">10:45</div>
+                                <div>10:50</div>
+                                <div>10:55</div>
+                            </div>
+                        </div>
+                        <div id="all" class="tab-pane fade">
+                            <div class="listTimeAppoiment">
+                                <div>07:00</div>
+                                <div class="timeDisabled">07:05</div>
+                                <div>07:10</div>
+                                <div>07:15</div>
+                                <div class="timeDisabled">07:20</div>
+                                <div>07:25</div>
+                                <div class="timeDisabled">07:35</div>
+                                <div>07:40</div>
+                                <div>07:45</div>
+                                <div class="timeDisabled">07:50</div>
+                                <div>07:55</div>
+                                <div>08:00</div>
+                                <div>08:05</div>
+                                <div class="timeDisabled">08:10</div>
+                                <div>08:15</div>
+                                <div class="timeDisabled">08:20</div>
+                                <div>08:25</div>
+                                <div>08:30</div>
+                                <div class="timeDisabled">08:35</div>
+                                <div>08:40</div>
+                                <div>08:45</div>
+                                <div>08:50</div>
+                                <div>08:55</div>
+                                <div class="timeDisabled">09:00</div>
+                                <div>09:05</div>
+                                <div class="timeDisabled">09:10</div>
+                                <div>09:15</div>
+                                <div class="timeDisabled">09:20</div>
+                                <div>09:25</div>
+                                <div>09:30</div>
+                                <div class="timeDisabled">09:35</div>
+                                <div>09:40</div>
+                                <div>09:45</div>
+                                <div>09:50</div>
+                                <div class="timeDisabled">09:55</div>
+                                <div>10:00</div>
+                                <div>10:05</div>
+                                <div>10:10</div>
+                                <div class="timeDisabled">10:15</div>
+                                <div>10:20</div>
+                                <div>10:25</div>
+                                <div class="timeDisabled">10:30</div>
+                                <div>10:35</div>
+                                <div>10:40</div>
+                                <div class="timeDisabled">10:45</div>
+                                <div>10:50</div>
+                                <div>10:55</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group anotherSuggestion">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#suggestionFollowDoctor">@T("Admin.SwitchBoard.OtherSuggestions")</a></li>
+                        <li><a data-toggle="tab" href="#suggestionFollowTime">Gợi ý theo thời gian</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="suggestionFollowDoctor" class="tab-pane fade in active">
+                            @*<div class="suggestionItem">
+                                <h5 data-toggle="collapse" data-target="#dovanhungTime"><i class="fa fa-user-md" aria-hidden="true"></i> <span>@T("Admin.SwitchBoard.Doctor"): </span> Đỗ Văn Hùng</h5>
+                                <div id="dovanhungTime" class="listTimeAppoiment listTimeAppoimentSuggestion collapse">
+                                    <div>07:00</div>
+                                    <div>07:05</div>
+                                    <div>07:10</div>
+                                    <div>07:15</div>
+                                </div>
+                            </div>*@
+                            <div class="suggestionItem">
+                                <h5 data-toggle="collapse" data-target="#nguyenmanhdungTime"><i class="fa fa-user-md" aria-hidden="true"></i> <span>@T("Admin.SwitchBoard.Professor"): </span> Nguyễn Mạnh Dũng</h5>
+                                <div id="nguyenmanhdungTime" class="listTimeAppoiment listTimeAppoimentSuggestion collapse">
+                                    <div>08:05</div>
+                                    <div>09:10</div>
+                                    <div>09:15</div>
+                                    <div>10:20</div>
+                                </div>
+                            </div>
+                            <div class="suggestionItem">
+                                <h5 data-toggle="collapse" data-target="#tranHienTime"><i class="fa fa-user-md" aria-hidden="true"></i> <span>@T("Admin.SwitchBoard.Master"): </span> Trần Hiển</h5>
+                                <div id="tranHienTime" class="listTimeAppoiment listTimeAppoimentSuggestion collapse">
+                                    <div>08:05</div>
+                                    <div>09:10</div>
+                                    <div>09:15</div>
+                                    <div>10:20</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="suggestionFollowTime" class="tab-pane fade">
+                            <div class="suggestionItem">
+                                <h5 data-toggle="collapse" data-target="#dateTime5"><i class="fa fa-calendar" aria-hidden="true"></i> Thứ Năm - 25/04/2019 </h5>
+                                <div id="dateTime5" class="listTimeAppoiment listTimeAppoimentSuggestion collapse">
+                                    <div>08:05</div>
+                                    <div>09:10</div>
+                                    <div>09:15</div>
+                                    <div>10:20</div>
+                                </div>
+                            </div>
+                            <div class="suggestionItem">
+                                <h5 data-toggle="collapse" data-target="#dateTime6"><i class="fa fa-calendar" aria-hidden="true"></i> Thứ Sáu - 26/04/2019 </h5>
+                                <div id="dateTime6" class="listTimeAppoiment listTimeAppoimentSuggestion collapse">
+                                    <div>08:05</div>
+                                    <div>09:10</div>
+                                    <div>09:15</div>
+                                    <div>10:20</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hotline-fixed">
+        <div id="phonering-alo-phoneIcon" class="phonering-alo-phone phonering-alo-main phonering-alo-show">
+            <!-- Add class active for animation -->
+            <div class="phonering-alo-ph-circle"></div>
+            <div class="phonering-alo-ph-circle-fill"></div>
+            <div class="phonering-alo-ph-img-circle">
+                <a href="#" class="pps-btn-img" title="Liên hệ">
+                    <img src="~/css/admin/images/icon-phone.png" alt="Liên hệ" width="50" class="img-responsive">
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $("#Gender_Male").prop('checked', true);
+    $("#ServiceId").addClass("select2");
+    $("#DoctorId").addClass("select2");
+    $("#DepartmentId").addClass("select2");
+    $('label[for="AppointmentHour"]').addClass('longLineHeightLabel');
+    $('label[for="DoctorId"]').addClass('longLineHeightLabel');
+    $('label[for="WardId"]').addClass('longLineHeightLabel');
+    $('label[for="RegisterPhoneNumber"]').addClass('longLineHeightLabel');
+
+    // Fields
+    var frm = {
+        el: '#switchboard-form',
+        $el: {},
+        birthDay: {
+            el: '#@Html.FieldIdFor(x => x.BirthDay)',
+            $el: {},
+            init: function () { }
+        },
+        appointmentDay: {
+            el: '#@Html.FieldIdFor(x => x.AppointmentDay)',
+            $el: {},
+            init: function () { }
+        },
+        appointmentHour: {
+            el: '#@Html.FieldIdFor(x => x.AppointmentHour)',
+            $el: {},
+            init: function () { }
+        },
+        init: function () { }
+    };
+    var birthDay = frm.birthDay;
+    var appointmentDay = frm.appointmentDay;
+    var appointmentHour = frm.appointmentHour;
+
+    // Methods
+    $.getCurrentDateDefaultForr = function () {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = dd + '/' + mm + '/' + yyyy;
+        return today;
+    }
+
+    $.getCurrentDate = function () {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = mm + '/' + dd + '/' + yyyy + ' 00:00';
+        return today;
+    }
+
+    // Init
+    frm.init = function () {
+        frm.$el = $(frm.birthDay);
+        birthDay.init();
+
+        frm.$el = $(frm.appointmentDay);
+        appointmentDay.init();
+
+        frm.$el = $(frm.appointmentHour);
+        appointmentHour.init();
+    }
+
+    birthDay.init = function () {
+        birthDay.$el = $(birthDay.el);
+        birthDay.$el.datetimepicker({
+                format: "DD/MM/YYYY",
+                locale: app.dateTime.locale(),
+                maxDate: $.getCurrentDate(),
+                defaultDate: $.getCurrentDate()
+        }).on('dp.show', function () {
+            if (!$(this).val()) {
+                return $(this).data('DateTimePicker').defaultDate($.getCurrentDateDefaultForr());
+            }
+        });
+    }
+
+    appointmentDay.init = function () {
+        appointmentDay.$el = $(appointmentDay.el);
+        appointmentDay.$el.datetimepicker({
+                format: "DD/MM/YYYY",
+                locale: app.dateTime.locale(),  
+                minDate: $.getCurrentDate(),
+                defaultDate: $.getCurrentDate()
+        }).on('dp.show', function () {
+            if (!$(this).val()) {
+                return $(this).data('DateTimePicker').defaultDate($.getCurrentDateDefaultForr());
+            }
+        });
+    }
+
+    appointmentHour.init = function () {
+        appointmentHour.$el = $(appointmentHour.el);
+        appointmentHour.$el.datetimepicker({
+                format: "HH:mm",
+                locale: app.dateTime.locale(),
+                defaultDate: null
+        }).on('dp.show', function () {
+            if (!$(this).val()) {
+                return $(this).data('DateTimePicker').defaultDate($.getCurrentDateDefaultForr());
+            }
+        });
+    }
+
+    // Events
+
+
+    // Startup
+    $(function () {
+        frm.init();
+    });
+
+    // Templates
+
+
+    // Helpers
+
+
+</script>

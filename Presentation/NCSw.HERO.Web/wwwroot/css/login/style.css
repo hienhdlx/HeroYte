@@ -1,0 +1,82 @@
+﻿
+@media (min-width: 1001px) {
+    .master-wrapper-content {
+        width: 100%;
+        margin: auto;
+        height: 100%;
+    }
+
+    .login-image-left {
+        height: 657px;
+    }
+}
+
+.master-wrapper-content .center-1 .page-title {
+    display: none;
+}
+.login-page .returning-wrapper.fieldset {
+    width: 36%;
+}
+.login-image-left {
+    width: 64%;
+    float: left;
+    height: 100%;
+    background-color: #4488dd !important;
+}
+
+.login-image-left img {
+    width: 100%;
+    height: 657px;
+    float: left;
+}
+
+.center-1 {
+    margin: 0;
+}
+
+.login-page .customer-blocks  {
+    margin: 0;
+}
+
+.external-authentication {
+    margin: 0;
+}
+
+.login-page .returning-wrapper .form-fields {
+    background-color: #ffffff;
+    padding-left: 45px;
+    min-height: 190px;
+}
+
+.header-login-new {
+    padding: 45px;
+    font-weight: 100;
+}
+
+.login-page .returning-wrapper input[type="text"],
+.login-page .returning-wrapper input[type="email"],
+.login-page .returning-wrapper input[type="password"] {
+    width: 350px;
+    padding: 5px;
+    height: 35px;
+    min-height: 35px;
+}
+
+.login-page .returning-wrapper .inputs.reversed {
+    text-align: left;
+}
+.login-page .returning-wrapper .buttons {
+    text-align: left;
+    padding: 0px;
+    padding-left: 45px;
+}
+
+.login-page .returning-wrapper .buttons input {
+    padding: 7px 20px;
+    background-color: rgb(38, 114, 236);
+    text-transform: none;
+}
+
+.field-validation-error {
+    text-align: left;
+}

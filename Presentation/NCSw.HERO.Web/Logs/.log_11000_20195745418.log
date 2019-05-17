@@ -1,0 +1,2 @@
+A fatal error was encountered. The library 'hostpolicy.dll' required to execute the application was not found in 'E:\HERO\Presentation\NCSw.HERO.Web\bin\Debug\netcoreapp2.2\'.
+Failed to run as a self-contained app. If this should be a framework-dependent app, add the E:\HERO\Presentation\NCSw.HERO.Web\bin\Debug\netcoreapp2.2\NCSw.HERO.Web.runtimeconfig.json file specifying the appropriate framework.
